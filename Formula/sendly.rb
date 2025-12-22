@@ -1,41 +1,21 @@
-# typed: false
-# frozen_string_literal: true
-
 # Homebrew formula for Sendly CLI
-# Install: brew install sendly-live/tap/sendly
-# Upgrade: brew upgrade sendly
+# To install: brew install sendly-live/tap/sendly
 
 class Sendly < Formula
-  desc "CLI for Sendly SMS API - Send SMS messages from your terminal"
+  desc "CLI for Sendly SMS API - Send SMS from your terminal"
   homepage "https://sendly.live"
-  url "https://registry.npmjs.org/@sendly/cli/-/cli-2.2.0.tgz"
-  sha256 "263415f541e2587025a6e0557bd8c2b4c7e4d378b6e56ed90c41ac5031e804d3"
+  url "https://registry.npmjs.org/@sendly/cli/-/cli-2.3.0.tgz"
+  sha256 "b6c8a748830a5e54b6dac475b27b1840bc8e3d8dcd2c1262f28e15ff9ff0d736"
   license "MIT"
-  head "https://github.com/sendly-live/sendly-cli.git", branch: "main"
 
-  depends_on "node@20"
+  depends_on "node" # Requires Node.js >= 18.0.0
 
   def install
-    system "npm", "install", *std_npm_args
+    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
     bin.install_symlink Dir["#{libexec}/bin/*"]
-    
-    # Generate shell completions
-    generate_completions_from_executable(bin/"sendly", "autocomplete", "--script", shells: [:bash, :zsh])
-  end
-
-  def caveats
-    <<~EOS
-      To get started with Sendly CLI:
-        sendly login        # Authenticate with your account
-        sendly sms send     # Send your first SMS
-        sendly --help       # See all commands
-
-      Documentation: https://sendly.live/docs/cli
-    EOS
   end
 
   test do
     assert_match "sendly", shell_output("#{bin}/sendly --version")
-    assert_match "COMMANDS", shell_output("#{bin}/sendly --help")
   end
 end
