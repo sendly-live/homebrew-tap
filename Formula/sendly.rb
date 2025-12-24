@@ -4,8 +4,8 @@
 class Sendly < Formula
   desc "CLI for Sendly SMS API - Send SMS from your terminal"
   homepage "https://sendly.live"
-  url "https://registry.npmjs.org/@sendly/cli/-/cli-3.1.1.tgz"
-  sha256 "7f80fac87bb879a2159cc3c1508143fbb78961ef24b7062dca51b387dd3f807d"
+  url "https://registry.npmjs.org/@sendly/cli/-/cli-3.3.0.tgz"
+  sha256 "640b327dd23428bdef6627a1ec74b21b19f2817ac38fc4d3b29b1ad851cff019"
   license "MIT"
 
   depends_on "node" # Requires Node.js >= 18.0.0
