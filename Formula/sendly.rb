@@ -8,10 +8,10 @@ class Sendly < Formula
   sha256 "564e87ac85f255be3643c3883fbe9558f0fd819b3045b74b6837d07d9feeb207"
   license "MIT"
 
-  depends_on "node" # Requires Node.js >= 18.0.0
+  depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args(prefix: libexec)
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 
